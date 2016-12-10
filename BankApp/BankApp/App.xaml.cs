@@ -30,6 +30,7 @@ namespace BankApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
         }
 
         /// <summary>

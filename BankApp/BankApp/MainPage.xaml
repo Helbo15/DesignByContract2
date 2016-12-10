@@ -1,13 +1,224 @@
 ﻿<Page
     x:Class="BankApp.MainPage"
+    x:Name="main"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BankApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+  
+    >
+    <!--MinHeight="500"-->
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" >
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="Banks" Height="auto" MaxHeight="40"/>
+            <RowDefinition x:Name="Customers" Height="auto" MaxHeight="40" />
+            <RowDefinition  x:Name="Accounts" Height="auto"/>
+            <RowDefinition  x:Name="AccountManagement" Height="auto" MaxHeight="40" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="FirstRowItem1" Grid.Column="0" Grid.Row="0" Background="#0078d7" >
+            <Button Content="Nordea" HorizontalAlignment="Stretch" Click="BtnNordea_Click"></Button>
+        </Grid>
+        <Grid x:Name="FirstRowItem2" Grid.Column="1" Grid.Row="0" Background="#107C10" >
+
+            <Button Content="Danske Bank" HorizontalAlignment="Stretch" Click="BtnDanskeBank_Click"></Button>
+        </Grid>
+        <Grid x:Name="FirstRowItem3" Grid.Column="2" Grid.Row="0" Background="#f075f0" >
+
+            <Button Content="Jyske Bank" HorizontalAlignment="Stretch" Click="BtnJyskeBank_Click"></Button>
+        </Grid>
+
+        <Grid x:Name="SecondRowItem1" Grid.Column="0" Grid.Row="1" Background="#0078d7" >
+            <Button HorizontalAlignment="Stretch" Click="BtnFirstPerson_Click"></Button>
+        </Grid>
+        <Grid x:Name="SecondRowItem2" Grid.Column="1" Grid.Row="1" Background="#107C10" >
+
+            <Button HorizontalAlignment="Stretch" Click="BtnSecondPerson_Click"></Button>
+        </Grid>
+        <Grid x:Name="SecondRowItem3" Grid.Column="2" Grid.Row="1" Background="#f075f0" >
+
+            <Button HorizontalAlignment="Stretch" Click="BtnThirdPerson_Click"></Button>
+        </Grid>
+        <Grid x:Name="FourthRowItem1" Grid.Column="0" Grid.Row="2" Background="#0078d7" >
+            <ScrollViewer x:Name="AccountsScroll" MinHeight="200"  MaxHeight="350">
+                <ListView x:Name="AccountList" Margin="0" Padding="0" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderContainerStyle >
+                                <Style TargetType="ListViewHeaderItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </GroupStyle.HeaderContainerStyle>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListViewHeaderItem x:Name="AddAccount">
+                    </ListViewHeaderItem>
+
+                </ListView>
+
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="FourthRowItem2" Grid.Column="1" Grid.Row="2" Background="#107C10" Grid.ColumnSpan="2">
+            <ScrollViewer Height="auto" MinHeight="200"  MaxHeight="350">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="Amount"/>
+                        <ColumnDefinition x:Name="Source"/>
+                        <ColumnDefinition x:Name="Target"/>
+                        <ColumnDefinition x:Name="date"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="TitleAmount" Grid.Column="0" Grid.Row="0" Background="#107C10" Grid.ColumnSpan="2">
+                        <ListView x:Name="AmountList">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderContainerStyle >
+                                        <Style TargetType="ListViewHeaderItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        </Style>
+                                    </GroupStyle.HeaderContainerStyle>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                            <ListViewHeaderItem x:Name="accAmount">
+                                <TextBlock Text="Amount" FontSize="10"></TextBlock>
+                            </ListViewHeaderItem>
+
+                        </ListView>
+                    </Grid>
+                    <Grid x:Name="TitleSource" Grid.Column="1" Grid.Row="0" Background="#107C10" Grid.ColumnSpan="2">
+                        <ListView x:Name="SourceList">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderContainerStyle >
+                                        <Style TargetType="ListViewHeaderItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        </Style>
+                                    </GroupStyle.HeaderContainerStyle>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                            <ListViewHeaderItem x:Name="accSource">
+                                <TextBlock Text="Source" FontSize="10"></TextBlock>
+                            </ListViewHeaderItem>
+
+                        </ListView>
+
+                    </Grid>
+                    <Grid x:Name="TitleTarget" Grid.Column="2" Grid.Row="0" Background="#107C10" Grid.ColumnSpan="2">
+                        <ListView x:Name="TargetList">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderContainerStyle >
+                                        <Style TargetType="ListViewHeaderItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        </Style>
+                                    </GroupStyle.HeaderContainerStyle>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                            <ListViewHeaderItem x:Name="accTarget">
+                                <TextBlock Text="Target" FontSize="10"></TextBlock>
+                            </ListViewHeaderItem>
+
+                        </ListView>
+                    </Grid>
+                    <Grid x:Name="TitleDate" Grid.Column="3" Grid.Row="0" Background="#107C10" Grid.ColumnSpan="2">
+                        <ListView x:Name="DateList">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderContainerStyle >
+                                        <Style TargetType="ListViewHeaderItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        </Style>
+                                    </GroupStyle.HeaderContainerStyle>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                            <ListViewHeaderItem x:Name="accDate">
+                                <TextBlock Text="Date" FontSize="10"></TextBlock>
+                            </ListViewHeaderItem>
+
+                        </ListView>
+
+                    </Grid>
+                    <Grid x:Name="BalanceTitle" Grid.Column="3" Grid.Row="0" Background="#107C10" Grid.ColumnSpan="2">
+                        <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,20">
+                            <TextBlock Text="Balance" VerticalAlignment="Top"></TextBlock>
+                            <TextBlock x:Name="accBallance"  VerticalAlignment="Top"></TextBlock>
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="ThirdRowItem1" Grid.Column="0" Grid.Row="3" Background="#0078d7">
+
+            <StackPanel>
+                <TextBlock Text="Bank Name"/>
+                <TextBox x:Name="BankDestination"></TextBox>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="ThirdRowItem2" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Background="#10fC10" HorizontalAlignment="Stretch">
+            <StackPanel>
+                <TextBlock Text="Account Number">
+                </TextBlock>
+                <TextBox x:Name="AccountNumber"></TextBox>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="ThirdRowItem3" Grid.Column="2" Grid.Row="3" Background="#f075f0" >
+            <StackPanel>
+                <TextBlock Text="Amount">
+                </TextBlock>
+                <TextBox x:Name="TransferAmount"></TextBox>
+            </StackPanel>
+        </Grid>
     </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar IsOpen="true" IsSticky="True" Margin="0,134,0,0">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton Name="depositBtn" Click="depositBtn_click" Icon="Upload" Label="Deposit"></AppBarButton>
+                <AppBarButton Name="withdrawBtn" Click="withDrawBtn_Click" Icon="Download" Label="Withdraw"></AppBarButton>
+                <AppBarButton Name="Movebtn" Click="moveBtn_Click" Icon="Switch" Label="Move"></AppBarButton>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
+
 </Page>
